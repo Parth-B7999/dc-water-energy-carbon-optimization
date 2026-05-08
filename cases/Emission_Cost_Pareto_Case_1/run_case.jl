@@ -40,8 +40,9 @@ println("--- Solving ---")
 optimize!(m)
 
 if termination_status(m) == MOI.OPTIMAL
-    e_pct = Int(round(data.gscalar["E_target_pct"] * 100))
-    result_name = "Results_Pareto_$(e_pct)pct.xlsx"
+    # E_target is the absolute GHG cap (kton CO2). Use it to label the output file.
+    # Change this filename to match the run (e.g. 100pct, 90pct, 80pct, 70pct, 65pct, 50pct)
+    result_name = "Results_Pareto_run.xlsx"
 
     export_results(m, vars, data;
                    filename = result_name,
@@ -49,6 +50,7 @@ if termination_status(m) == MOI.OPTIMAL
                    savepath = @__DIR__,
                    save_raw = true)
     println("✅ Saved: ", result_name)
+    println("ℹ️  Rename the file to reflect the E_target used (e.g. Results_Pareto_100pct.xlsx)")
 else
     println("⚠️  Status: ", termination_status(m))
 end

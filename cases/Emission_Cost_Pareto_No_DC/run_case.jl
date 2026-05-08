@@ -22,8 +22,8 @@ set_objective!(m, data, CRF, vars)
 optimize!(m)
 
 if termination_status(m) == MOI.OPTIMAL
-    e_pct = Int(round(data.gscalar["E_target_pct"] * 100))
-    result_name = "Results_NoDC_Pareto_$(e_pct)pct.xlsx"
+    # Set E_target in Model_Data.xlsx Model_Data sheet, then rename output accordingly
+    result_name = "Results_NoDC_Pareto_run.xlsx"
     export_results(m, vars, data; filename=result_name, plot=false, savepath=@__DIR__, save_raw=true)
     println("✅ Saved: ", result_name)
 else
