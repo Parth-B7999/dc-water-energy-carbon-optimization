@@ -1,0 +1,20 @@
+# Julia
+*.jld2
+.julia/
+Manifest.toml
+
+# macOS
+.DS_Store
+*.nosync
+
+# Jupyter
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+
+# Gurobi
+gurobi.log
+
+# Editor
+.vscode/
+*.swp
